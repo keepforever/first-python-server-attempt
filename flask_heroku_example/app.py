@@ -25,8 +25,8 @@ def predict(one, two, three, four):
 
     file_path = os.path.join(app.root_path, 'static', 'my_saved_model.pkl')
     loaded_model = pickle.load(open(file_path, 'rb'))
-    a = [one, two, three, four]
-    result_a = loaded_model.predict(np.reshape(a, [1, 4]))
+    a_test = [one, two, three, four]
+    result_a = loaded_model.predict([a_test])
     return "The result is {}".format(result_a)
 
 # <int:num2> => extract num2 to as an int
