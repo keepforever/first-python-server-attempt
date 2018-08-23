@@ -3,6 +3,9 @@ import psycopg2
 from flask import Flask, render_template, g
 import pickle
 
+import sklearn
+from sklearn.cluster import KMeans
+
 
 app = Flask(__name__)
 
