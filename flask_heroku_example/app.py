@@ -16,7 +16,7 @@ def index(name="defaultName"):
 @app.route('/predict/<float:one>/<float:two>/<float:three>/<float:four>')
 def predict(one, two, three, four):
 
-    filename = "finalized_model.sav"
+    filename = "./static/my_saved_model.pkl"
     loaded_model = pickle.load(open(filename, 'rb'))
     a = [one, two, three, four]
     result_a = loaded_model.predict(np.reshape(a, [1, 4]))
