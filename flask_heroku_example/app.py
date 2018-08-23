@@ -3,6 +3,7 @@ import psycopg2
 from flask import Flask, render_template, g
 import pickle
 
+import scipy
 import sklearn
 from sklearn.cluster import KMeans
 
