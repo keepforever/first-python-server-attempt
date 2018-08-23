@@ -6,6 +6,12 @@ import pickle
 
 app = Flask(__name__)
 
+# get data
+
+
+
+
+
 
 @app.route('/')
 @app.route('/<name>')
@@ -17,8 +23,8 @@ def index(name="defaultName"):
 @app.route('/predict/<float:one>/<float:two>/<float:three>/<float:four>')
 def predict(one, two, three, four):
 
-
-    loaded_model = pickle.load(open('my_saved_model.pkl', 'rb'))
+    file_path = os.path.join(app.root_path, 'static', 'my_saved_model.pkl')
+    loaded_model = pickle.load(open(file_path, 'rb'))
     a = [one, two, three, four]
     result_a = loaded_model.predict(np.reshape(a, [1, 4]))
     return "The result is {}".format(result_a)
