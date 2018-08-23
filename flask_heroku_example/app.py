@@ -21,4 +21,4 @@ def index():
     # cur = g.db_conn.cursor()
     # cur.execute("SELECT * FROM country;")
     # return render_template('index.html', countries=cur.fetchall())
-    return "hello flask"
+    return "hello flask - this is a change"
