@@ -40,7 +40,7 @@ def tensor(string="default_string"):
 
     sess.close()
     #simple test return
-    return "default string: {}, spikes: {}".format(string, spikes)
+    return "default string: {}, ".format(string)
 
 
 @app.route('/predict/<float:one>/<float:two>/<float:three>/<float:four>')
