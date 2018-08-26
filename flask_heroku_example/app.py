@@ -31,6 +31,9 @@ def tensor(string="default_string"):
 
     saver = tf.train.Saver()
     saver.restore(sess, file_path)
+    print(string)
+    print('\n')
+    print('\n')
 
     print(spikes.eval())
     return_string = spikes.eval()
