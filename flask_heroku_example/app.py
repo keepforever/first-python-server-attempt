@@ -24,6 +24,8 @@ def index(name="defaultName"):
 @app.route('/tensor/<string>')
 def tensor(string="default_string"):
 
+    sess = tf.InteractiveSession()
+
     file_path = os.path.join(app.root_path, 'static', './spikes/spikes.ckpt')
     spikes = tf.Variable([False]*8, name="spikes")
 
@@ -35,7 +37,7 @@ def tensor(string="default_string"):
 
     sess.close()
     #simple test return
-    return "default string: \n {}".format(string)
+    return "default string: \n {} \n and check the console".format(string)
 
 
 @app.route('/predict/<float:one>/<float:two>/<float:three>/<float:four>')
