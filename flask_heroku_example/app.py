@@ -24,23 +24,16 @@ def index(name="defaultName"):
 @app.route('/tensor/<string>')
 def tensor(string="default_string"):
 
-    sess = tf.InteractiveSession()
-
     file_path = os.path.join(app.root_path, 'static', './spikes/spikes.ckpt')
+    
     spikes = tf.Variable([False]*8, name="spikes")
 
-    saver = tf.train.Saver()
-    saver.restore(sess, file_path)
-    print(string)
+    print(spikes)
     print('\n')
     print('\n')
-
-    print(spikes.eval())
-    return_string = spikes.eval()
-
-    sess.close()
+    
     #simple test return
-    return "default string: {}, ".format(string)
+    return "default string: {}, spikes: {}".format(string, spikes)
 
 
 @app.route('/predict/<float:one>/<float:two>/<float:three>/<float:four>')
