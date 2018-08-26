@@ -37,7 +37,7 @@ def tensor(string="default_string"):
 
     sess.close()
     #simple test return
-    return "default string: \n {} \n and check the console".format(string)
+    return "default string: {}, spikes: {}".format(string, spikes)
 
 
 @app.route('/predict/<float:one>/<float:two>/<float:three>/<float:four>')
