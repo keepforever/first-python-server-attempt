@@ -27,10 +27,14 @@ def tensor(string="default_string"):
     file_path = os.path.join(app.root_path, 'static', './spikes/spikes.ckpt')
     
     spikes = tf.Variable([False]*8, name="spikes")
-
-    print(spikes)
+    # try
+    
     print('\n')
+    print('normal print', spikes)
     print('\n')
+    print('wrapped in str()', str(spikes))
+    print('\n')
+    print('normal print', spikes)
     
     #simple test return
     return "default string: {}, spikes: {}".format(string, spikes)
