@@ -35,9 +35,11 @@ def tensor(string="default_string"):
     print('wrapped in str()', str(spikes))
     print('\n')
     print('normal print', spikes)
+
+    spikes_as_string = str(spikes)
     
     #simple test return
-    return "default string: {}, spikes: {}".format(string, spikes)
+    return "default string: {}, spikes: {}".format(string, spikes_as_string)
 
 
 @app.route('/predict/<float:one>/<float:two>/<float:three>/<float:four>')
