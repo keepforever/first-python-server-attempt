@@ -7,23 +7,37 @@ import scipy
 import sklearn
 from sklearn.cluster import KMeans
 
+import tensorflow as tf
+sess = tf.InteractiveSession()
 
 app = Flask(__name__)
 
 # get data
 
 
-
-
-
-
 @app.route('/')
 @app.route('/<name>')
 def index(name="defaultName"):
     return "hello from {}".format(name)
+#tensorflow route
+
+@app.route('/tensor/<string>')
+def tensor(string="default_string"):
+
+    file_path = os.path.join(app.root_path, 'static', './spikes/spikes.ckpt')
+    spikes = tf.Variable([False]*8, name="spikes")
+
+    saver = tf.train.Saver()
+    saver.restore(sess, file_path)
+
+    print(spikes.eval())
+    return_string = spikes.eval()
+
+    sess.close()
+    #simple test return
+    return "default string: \n {}".format(string)
 
 
-@app.route('/predict/<turd>')
 @app.route('/predict/<float:one>/<float:two>/<float:three>/<float:four>')
 def predict(one, two, three, four):
 
@@ -44,37 +58,3 @@ def add(num1, num2):
 @app.route('/cats/<int:a>/<int:b>/<int:c>/<int:d>')
 def cats(a, b, c, d):
     return '{} {} {} {}'.format(a,b,c,d)
-
-#considering different combinations of clean style query params
-@app.route('/count/<int:num>/<float:thing>')
-@app.route('/count/<float:num>/<int:thing>')
-@app.route('/count/<num>/<float:thing>')
-@app.route('/count/<float:num>/<float:thing>')
-@app.route('/count/<int:num>/<int:thing>')
-def count(num, thing):
-    return 'You have {} {}'.format(num, thing)
-    # returns 404 if it gets
-
-
-
-
-
-
-#
-# @app.route('/')
-# def index():
-#     return "hello flask - this is a change"
-
-# cur = g.db_conn.cursor()
-# cur.execute("SELECT * FROM country;")
-# return render_template('index.html', countries=cur.fetchall())
-
-# app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'XYZ')
-
-#
-# def connect_db():
-#     return psycopg2.connect(os.environ.get('DATABASE_URL'))
-
-# @app.before_request
-# def before_request():
-#     g.db_conn = connect_db()
